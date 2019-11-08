@@ -1,117 +1,74 @@
 <template>
-  <v-app dark>
-    <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
-      app
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+  <v-app id="inspire" color="light">
+    <v-app-bar app color="primary">
+      <v-toolbar-title class="headline text-uppercase">
+        <span color="primary">Vuetify</span>
+        <span class="font-weight-light">MATERIAL DESIGN</span>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
       <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
+        text
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
       >
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>mdi-menu</v-icon>
+        <span class="mr-2">Latest Release</span>
       </v-btn>
     </v-app-bar>
+
     <v-content>
-      <v-container>
-        <nuxt />
-      </v-container>
+      <v-tabs-items v-model="tab">
+        <v-tab-item
+          v-for="(item, index) in items"
+          :key="index"
+        >
+          <div class="">{{item.name}}のchart.jsが入る</div>
+          <v-card>
+            <v-card-title>以下に売上履歴が入る</v-card-title>
+            <v-card-text>{{item.text}}</v-card-text>
+          </v-card>
+        </v-tab-item>
+      </v-tabs-items>
     </v-content>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      :right="right"
-      temporary
-      fixed
-    >
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer
-      :fixed="fixed"
-      app
-    >
-      <span>&copy; 2019</span>
-    </v-footer>
+    <v-card color="basil">
+      <v-tabs
+        v-model="tab"
+        background-color="transparent"
+        color="basil"
+        class="mb-1"
+        grow
+      >
+        <v-tab
+          v-for="(item, index) in items"
+          :key="index"
+        >
+          {{ item.name }}
+        </v-tab>
+      </v-tabs>
+
+    </v-card>
   </v-app>
 </template>
 
 <script>
+// import HelloWorld from './components/HelloWorld'
+
 export default {
-  data () {
-    return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
-    }
-  }
-}
+  name: 'App',
+  components: {
+    // HelloWorld
+  },
+  data: () => ({
+    tab:null,
+    items:[
+      {
+        name:'tab1',
+        text:'hogehogehogehoge'
+      },
+      {
+        name:'tab2',
+        text:'fugafugafugafuga'
+      }
+    ]
+  }),
+};
 </script>
