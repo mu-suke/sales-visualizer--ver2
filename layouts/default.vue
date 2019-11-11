@@ -2,7 +2,7 @@
   <v-app id="inspire" color="light">
     <v-app-bar app color="primary">
       <v-toolbar-title class="headline text-uppercase">
-        <span color="primary">Vuetify</span>
+        <span>Vuetify</span>
         <span class="font-weight-light">MATERIAL DESIGN</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -20,6 +20,7 @@
         <v-tab-item
           v-for="(item, index) in items"
           :key="index"
+          class="mx-5"
         >
           <div class="">{{item.name}}のchart.jsが入る</div>
           <v-card>
